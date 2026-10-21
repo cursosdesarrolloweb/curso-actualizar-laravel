@@ -9,14 +9,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('tickets', function (Blueprint $table) {
-            $table->string('priority')->nullable()->change();
+            $table->string('priority')->nullable()->default('normal')->change();
         });
     }
 
     public function down(): void
     {
         Schema::table('tickets', function (Blueprint $table) {
-            $table->string('priority')->nullable(false)->change();
+            $table->string('priority')->nullable(false)->default('normal')->change();
         });
     }
 };

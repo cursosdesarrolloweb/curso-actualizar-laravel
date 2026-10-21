@@ -15,7 +15,7 @@ return new class extends Migration
             $table->text('body');
             $table->string('status')->default('open');
             $table->string('priority')->default('normal');
-            $table->float('estimated_hours', 8, 2)->nullable();
+            $table->decimal('estimated_hours', 8, 2)->nullable();
             $table->timestamp('due_at')->nullable();
             $table->timestamp('closed_at')->nullable();
             $table->timestamps();
