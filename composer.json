@@ -7,7 +7,7 @@
     "require": {
         "php": "^8.2",
         "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^11.0",
+        "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.4",
@@ -71,16 +71,6 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
-        },
-        "policy": {
-            "advisories": {
-                "ignore-id": {
-                    "PKSA-mdq4-51ck-6kdq": {"on-audit": false, "reason": "Sin parche en Laravel 11, corregido en la 12.60. Quitar al subir a Laravel 12."},
-                    "PKSA-3r5d-mb8f-1qw9": {"on-audit": false, "reason": "Sin parche en Laravel 11, corregido en la 12.60. Quitar al subir a Laravel 12."},
-                    "PKSA-m5cs-t1y6-qpcs": {"on-audit": false, "reason": "Sin parche en Laravel 11, corregido en la 12.61.1. Quitar al subir a Laravel 12."},
-                    "PKSA-d5tc-s1qs-h781": {"on-audit": false, "reason": "Sin parche en Laravel 11, corregido en la 12.69. Quitar al subir a Laravel 12."}
-                }
-            }
         }
     },
     "minimum-stability": "stable",
