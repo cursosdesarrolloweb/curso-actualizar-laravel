@@ -15,14 +15,7 @@ class TicketController extends Controller
 {
     public function index(Request $request): View
     {
-        $tickets = Ticket::query()
-            ->forUser($request->user())
-            ->when($request->get('q'), fn (Builder $query, string $search) => $query->where('subject', 'like', "%{$search}%"))
-            ->latest()
-            ->paginate(15)
-            ->withQueryString();
-
-        return view('tickets.index', ['tickets' => $tickets]);
+        return view('tickets.index', ['search' => (string) $request->get('q', '')]);
     }
 
     public function create(): View
