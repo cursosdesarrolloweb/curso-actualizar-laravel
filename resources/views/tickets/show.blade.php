@@ -24,7 +24,12 @@
                     </div>
                     <div>
                         <dt class="text-gray-500">Vence</dt>
-                        <dd>{{ $ticket->due_at?->format('d/m/Y H:i') ?? '-' }}</dd>
+                        <dd>
+                            {{ $ticket->due_at?->format('d/m/Y H:i') ?? '-' }}
+                            @if ($ticket->hours_left !== null)
+                                <span @class(['text-red-600' => $ticket->hours_left < 0, 'text-gray-500' => $ticket->hours_left >= 0])>({{ $ticket->hours_left }} h)</span>
+                            @endif
+                        </dd>
                     </div>
                     <div>
                         <dt class="text-gray-500">Estimación</dt>

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Enums\TicketPriority;
 use App\Enums\TicketStatus;
+use App\Support\Sla;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,6 +34,10 @@ class Ticket extends Model
         'closed_at' => 'datetime',
     ];
 
+    protected $appends = [
+        'hours_left',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -45,6 +51,13 @@ class Ticket extends Model
     public function attachments(): HasMany
     {
         return $this->hasMany(Attachment::class);
+    }
+
+    protected function hoursLeft(): Attribute
+    {
+        return Attribute::get(fn (): ?int => $this->isClosed() || $this->due_at === null
+            ? null
+            : app(Sla::class)->hoursLeft($this->due_at));
     }
 
     public function scopeOpen(Builder $query): void

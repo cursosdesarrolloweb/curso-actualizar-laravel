@@ -6,12 +6,15 @@ use App\Enums\TicketPriority;
 use App\Enums\TicketStatus;
 use App\Models\Ticket;
 use App\Models\User;
+use App\Support\Sla;
 use Illuminate\Http\UploadedFile;
 
 class CreateTicket
 {
-    public function __construct(private StoreAttachments $storeAttachments)
-    {
+    public function __construct(
+        private Sla $sla,
+        private StoreAttachments $storeAttachments,
+    ) {
     }
 
     /**
@@ -24,7 +27,7 @@ class CreateTicket
             'body' => $body,
             'status' => TicketStatus::Open,
             'priority' => $priority,
-            'due_at' => now()->addHours(($priority ?? TicketPriority::Normal)->slaHours()),
+            'due_at' => $this->sla->dueAt($priority),
         ]);
 
         $this->storeAttachments->handle($ticket, $customer, $attachments);
