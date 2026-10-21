@@ -1,8 +1,5 @@
 <?php
 
-use App\Providers\AppServiceProvider;
-use App\Providers\AuthServiceProvider;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -166,10 +163,6 @@ return [
         /*
          * Application Service Providers...
          */
-        AppServiceProvider::class,
-        AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        RouteServiceProvider::class,
     ])->toArray(),
 
     /*
