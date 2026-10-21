@@ -1,11 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Rector\Config\RectorConfig;
-use Rector\Renaming\Rector\MethodCall\RenameMethodRector;
-use Rector\Renaming\ValueObject\MethodCallRename;
 use RectorLaravel\Rector\ClassMethod\AddGenericReturnTypeToRelationsRector;
-use RectorLaravel\Set\LaravelSetList;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -16,12 +12,7 @@ return RectorConfig::configure()
         __DIR__.'/routes',
         __DIR__.'/tests',
     ])
-    ->withSets([
-        LaravelSetList::LARAVEL_120,
-    ])
+    ->withComposerBased(laravel: true)
     ->withRules([
         AddGenericReturnTypeToRelationsRector::class,
-    ])
-    ->withConfiguredRule(RenameMethodRector::class, [
-        new MethodCallRename(Request::class, 'get', 'input'),
     ]);
