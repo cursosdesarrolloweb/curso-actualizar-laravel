@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Ticket;
+use App\Models\TicketReply;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -16,14 +18,25 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@tickets.test',
         ]);
 
-        User::factory()->withRole('agent')->create([
+        $agent = User::factory()->withRole('agent')->create([
             'name' => 'Agente',
             'email' => 'agent@tickets.test',
         ]);
 
-        User::factory()->withRole('customer')->create([
+        $customer = User::factory()->withRole('customer')->create([
             'name' => 'Cliente',
             'email' => 'customer@tickets.test',
         ]);
+
+        Ticket::factory()->count(3)->for($customer)->create();
+
+        Ticket::factory()
+            ->count(2)
+            ->pending()
+            ->for($customer)
+            ->has(TicketReply::factory()->for($agent), 'replies')
+            ->create();
+
+        Ticket::factory()->closed()->for($customer)->create();
     }
 }
