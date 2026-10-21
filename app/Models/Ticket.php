@@ -26,14 +26,6 @@ class Ticket extends Model
         'due_at',
     ];
 
-    protected $casts = [
-        'status' => TicketStatus::class,
-        'priority' => TicketPriority::class,
-        'estimated_hours' => 'float',
-        'due_at' => 'datetime',
-        'closed_at' => 'datetime',
-    ];
-
     protected $appends = [
         'hours_left',
     ];
@@ -84,5 +76,25 @@ class Ticket extends Model
             'status' => TicketStatus::Closed,
             'closed_at' => now(),
         ])->save();
+    }
+
+    /**
+     * @return array{
+     *     status: 'App\Enums\TicketStatus',
+     *     priority: 'App\Enums\TicketPriority',
+     *     estimated_hours: 'float',
+     *     due_at: 'datetime',
+     *     closed_at: 'datetime',
+     * }
+     */
+    protected function casts(): array
+    {
+        return [
+            'status' => TicketStatus::class,
+            'priority' => TicketPriority::class,
+            'estimated_hours' => 'float',
+            'due_at' => 'datetime',
+            'closed_at' => 'datetime',
+        ];
     }
 }

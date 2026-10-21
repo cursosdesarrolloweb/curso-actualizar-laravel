@@ -35,8 +35,8 @@ test('line breaks in the body are rendered and html is escaped', function () {
 
     $this->actingAs($customer)
         ->get(route('tickets.show', $ticket))
-        ->assertSee('Primera línea<br />', false)
-        ->assertSee('&lt;b&gt;Segunda&lt;/b&gt; línea', false);
+        ->assertSeeHtml('Primera línea<br />')
+        ->assertSeeHtml('&lt;b&gt;Segunda&lt;/b&gt; línea');
 });
 
 test('internal notes are hidden from customers', function () {

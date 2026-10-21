@@ -17,10 +17,6 @@ class Attachment extends Model
         'size',
     ];
 
-    protected $casts = [
-        'size' => 'integer',
-    ];
-
     public function ticket(): BelongsTo
     {
         return $this->belongsTo(Ticket::class);
@@ -29,5 +25,15 @@ class Attachment extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return array{size: 'integer'}
+     */
+    protected function casts(): array
+    {
+        return [
+            'size' => 'integer',
+        ];
     }
 }
