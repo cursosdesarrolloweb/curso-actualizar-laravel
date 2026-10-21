@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\UserRoleController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InboundMailController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TicketReplyController;
@@ -46,5 +47,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/users/{user}/roles', [UserRoleController::class, 'edit'])->name('users.roles.edit');
     Route::put('/users/{user}/roles', [UserRoleController::class, 'update'])->name('users.roles.update');
 });
+
+Route::post('/webhooks/inbound-mail', InboundMailController::class)->name('webhooks.inbound-mail');
 
 require __DIR__.'/auth.php';

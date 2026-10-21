@@ -14,6 +14,10 @@ return [
     |
     */
 
+    'inbound_mail' => [
+        'secret' => env('INBOUND_MAIL_SECRET'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
