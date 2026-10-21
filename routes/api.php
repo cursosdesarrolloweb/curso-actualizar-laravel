@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\TicketController;
+use App\Http\Controllers\Api\TokenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/tokens', [TokenController::class, 'store'])
+    ->middleware('throttle:6,1')
+    ->name('api.tokens.store');
+
+Route::middleware('auth:sanctum')->name('api.')->group(function () {
+    Route::apiResource('tickets', TicketController::class)->only(['index', 'store', 'show']);
 });
