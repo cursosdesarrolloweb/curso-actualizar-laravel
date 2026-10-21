@@ -11,9 +11,7 @@ use Illuminate\Http\UploadedFile;
 
 class ReplyToTicket
 {
-    public function __construct(private StoreAttachments $storeAttachments)
-    {
-    }
+    public function __construct(private StoreAttachments $storeAttachments) {}
 
     /**
      * @param  array<int, UploadedFile>  $attachments

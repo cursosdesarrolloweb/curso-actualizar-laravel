@@ -39,5 +39,5 @@ test('the sla is breached after the due date', function () {
 });
 
 test('it uses the current time when no date is given', function () {
-    expect((new Sla())->hoursLeft(Carbon::parse('2024-01-15 15:00:00')))->toBe(5);
+    expect((new Sla)->hoursLeft(Carbon::parse('2024-01-15 15:00:00')))->toBe(5);
 });

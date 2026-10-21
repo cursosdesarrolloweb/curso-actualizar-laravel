@@ -13,11 +13,11 @@ class RolesAndPermissionsSeeder extends Seeder
     {
         app(PermissionRegistrar::class)->forgetCachedPermissions();
 
-        $viewAnyTicket = Permission::findOrCreate('tickets.view-any');
-        $assignRoles = Permission::findOrCreate('roles.assign');
+        $viewAnyTicket = Permission::firstOrCreate(['name' => 'tickets.view-any', 'guard_name' => 'web']);
+        $assignRoles = Permission::firstOrCreate(['name' => 'roles.assign', 'guard_name' => 'web']);
 
-        Role::findOrCreate('admin')->syncPermissions([$viewAnyTicket, $assignRoles]);
-        Role::findOrCreate('agent')->syncPermissions([$viewAnyTicket]);
-        Role::findOrCreate('customer');
+        Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web'])->syncPermissions([$viewAnyTicket, $assignRoles]);
+        Role::firstOrCreate(['name' => 'agent', 'guard_name' => 'web'])->syncPermissions([$viewAnyTicket]);
+        Role::firstOrCreate(['name' => 'customer', 'guard_name' => 'web']);
     }
 }

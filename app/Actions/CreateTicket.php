@@ -14,8 +14,7 @@ class CreateTicket
     public function __construct(
         private Sla $sla,
         private StoreAttachments $storeAttachments,
-    ) {
-    }
+    ) {}
 
     /**
      * @param  array<int, UploadedFile>  $attachments
