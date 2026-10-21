@@ -3,7 +3,6 @@
 use App\Models\User;
 use Database\Seeders\RolesAndPermissionsSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Spatie\Permission\PermissionRegistrar;
 use Tests\TestCase;
 
 /*
@@ -19,7 +18,6 @@ use Tests\TestCase;
 uses(TestCase::class, RefreshDatabase::class)
     ->beforeEach(function () {
         $this->seed(RolesAndPermissionsSeeder::class);
-        $this->app->make(PermissionRegistrar::class)->registerPermissions();
     })
     ->in('Feature');
 

@@ -23,10 +23,10 @@ class AssignRoleRequest extends FormRequest
     }
 
     /**
-     * @return array<int, string>
+     * @return array<int, int>
      */
     public function roleIds(): array
     {
-        return $this->validated('roles', []);
+        return array_map(intval(...), $this->validated('roles', []));
     }
 }
