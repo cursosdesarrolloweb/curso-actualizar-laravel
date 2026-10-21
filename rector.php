@@ -1,6 +1,7 @@
 <?php
 
 use Rector\Config\RectorConfig;
+use RectorLaravel\Rector\ClassMethod\AddGenericReturnTypeToRelationsRector;
 use RectorLaravel\Set\LaravelSetList;
 
 return RectorConfig::configure()
@@ -14,4 +15,7 @@ return RectorConfig::configure()
     ])
     ->withSets([
         LaravelSetList::LARAVEL_110,
+    ])
+    ->withRules([
+        AddGenericReturnTypeToRelationsRector::class,
     ]);

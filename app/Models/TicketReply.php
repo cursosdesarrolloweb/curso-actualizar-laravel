@@ -15,19 +15,22 @@ class TicketReply extends Model
         'is_internal',
     ];
 
+    /**
+     * @return BelongsTo<Ticket, $this>
+     */
     public function ticket(): BelongsTo
     {
         return $this->belongsTo(Ticket::class);
     }
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * @return array{is_internal: 'boolean'}
-     */
     protected function casts(): array
     {
         return [

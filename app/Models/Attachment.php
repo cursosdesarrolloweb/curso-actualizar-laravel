@@ -17,19 +17,22 @@ class Attachment extends Model
         'size',
     ];
 
+    /**
+     * @return BelongsTo<Ticket, $this>
+     */
     public function ticket(): BelongsTo
     {
         return $this->belongsTo(Ticket::class);
     }
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * @return array{size: 'integer'}
-     */
     protected function casts(): array
     {
         return [

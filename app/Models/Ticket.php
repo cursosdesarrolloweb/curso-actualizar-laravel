@@ -30,16 +30,25 @@ class Ticket extends Model
         'hours_left',
     ];
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return HasMany<TicketReply, $this>
+     */
     public function replies(): HasMany
     {
         return $this->hasMany(TicketReply::class);
     }
 
+    /**
+     * @return HasMany<Attachment, $this>
+     */
     public function attachments(): HasMany
     {
         return $this->hasMany(Attachment::class);
@@ -78,15 +87,6 @@ class Ticket extends Model
         ])->save();
     }
 
-    /**
-     * @return array{
-     *     status: 'App\Enums\TicketStatus',
-     *     priority: 'App\Enums\TicketPriority',
-     *     estimated_hours: 'float',
-     *     due_at: 'datetime',
-     *     closed_at: 'datetime',
-     * }
-     */
     protected function casts(): array
     {
         return [
