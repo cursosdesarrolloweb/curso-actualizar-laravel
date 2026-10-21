@@ -19,7 +19,7 @@ class Sla
 
     public function hoursLeft(CarbonInterface $dueAt): int
     {
-        return $this->now()->diffInHours($dueAt, false);
+        return (int) $this->now()->diffInHours($dueAt, false);
     }
 
     public function isBreached(CarbonInterface $dueAt): bool
