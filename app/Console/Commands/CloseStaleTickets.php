@@ -4,14 +4,14 @@ namespace App\Console\Commands;
 
 use App\Enums\TicketStatus;
 use App\Models\Ticket;
+use Illuminate\Console\Attributes\Description;
+use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 
+#[Description('Cierra los tickets que llevan días esperando una respuesta del cliente')]
+#[Signature('tickets:close-stale {--days=7 : Días sin respuesta del cliente}')]
 class CloseStaleTickets extends Command
 {
-    protected $signature = 'tickets:close-stale {--days=7 : Días sin respuesta del cliente}';
-
-    protected $description = 'Cierra los tickets que llevan días esperando una respuesta del cliente';
-
     public function handle(): int
     {
         $stale = Ticket::query()

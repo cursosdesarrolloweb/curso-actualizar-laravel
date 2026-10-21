@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+#[Fillable([
+    'body',
+    'is_internal',
+])]
 class TicketReply extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'body',
-        'is_internal',
-    ];
 
     /**
      * @return BelongsTo<Ticket, $this>

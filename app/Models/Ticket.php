@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Enums\TicketPriority;
 use App\Enums\TicketStatus;
 use App\Support\Sla;
+use Illuminate\Database\Eloquent\Attributes\Appends;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -14,22 +16,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+#[Appends([
+    'hours_left',
+])]
+#[Fillable([
+    'subject',
+    'body',
+    'status',
+    'priority',
+    'estimated_hours',
+    'due_at',
+])]
 class Ticket extends Model
 {
     use HasFactory, HasUuids;
-
-    protected $fillable = [
-        'subject',
-        'body',
-        'status',
-        'priority',
-        'estimated_hours',
-        'due_at',
-    ];
-
-    protected $appends = [
-        'hours_left',
-    ];
 
     /**
      * @return BelongsTo<User, $this>
