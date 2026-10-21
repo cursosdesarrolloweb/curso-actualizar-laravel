@@ -6,24 +6,23 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "doctrine/dbal": "^3.7",
         "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^10.10",
-        "laravel/sanctum": "^3.3",
+        "laravel/framework": "^11.0",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
-        "livewire/livewire": "^3.0",
-        "spatie/laravel-permission": "^5.11"
+        "livewire/livewire": "^3.4",
+        "spatie/laravel-permission": "^6.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
-        "laravel/breeze": "^1.26",
+        "larastan/larastan": "^2.9",
+        "laravel/breeze": "^2.0",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^7.0",
-        "nunomaduro/larastan": "^2.6",
+        "nunomaduro/collision": "^8.1",
         "pestphp/pest": "^2.0",
-        "pestphp/pest-plugin-laravel": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.4",
         "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
@@ -70,6 +69,16 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
+        },
+        "policy": {
+            "advisories": {
+                "ignore-id": {
+                    "PKSA-mdq4-51ck-6kdq": {"on-audit": false, "reason": "Sin parche en Laravel 11, corregido en la 12.60. Quitar al subir a Laravel 12."},
+                    "PKSA-3r5d-mb8f-1qw9": {"on-audit": false, "reason": "Sin parche en Laravel 11, corregido en la 12.60. Quitar al subir a Laravel 12."},
+                    "PKSA-m5cs-t1y6-qpcs": {"on-audit": false, "reason": "Sin parche en Laravel 11, corregido en la 12.61.1. Quitar al subir a Laravel 12."},
+                    "PKSA-d5tc-s1qs-h781": {"on-audit": false, "reason": "Sin parche en Laravel 11, corregido en la 12.69. Quitar al subir a Laravel 12."}
+                }
+            }
         }
     },
     "minimum-stability": "stable",
