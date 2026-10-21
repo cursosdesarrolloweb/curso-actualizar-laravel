@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\TicketPriority;
 use App\Enums\TicketStatus;
 use App\Support\Sla;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -61,12 +62,14 @@ class Ticket extends Model
             : app(Sla::class)->hoursLeft($this->due_at));
     }
 
-    public function scopeOpen(Builder $query): void
+    #[Scope]
+    protected function open(Builder $query): void
     {
         $query->where('status', '!=', TicketStatus::Closed);
     }
 
-    public function scopeForUser(Builder $query, User $user): void
+    #[Scope]
+    protected function forUser(Builder $query, User $user): void
     {
         $query->unless(
             $user->can('tickets.view-any'),

@@ -15,7 +15,7 @@ class TicketController extends Controller
 {
     public function index(Request $request): View
     {
-        return view('tickets.index', ['search' => (string) $request->get('q', '')]);
+        return view('tickets.index', ['search' => (string) $request->input('q', '')]);
     }
 
     public function create(): View
